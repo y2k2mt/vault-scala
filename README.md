@@ -1,4 +1,4 @@
-Value Scala Client
+Vault Scala Client
 ===============================================
 
 [Hashicorp Vault](https://www.vaultproject.io/) client for scala.
