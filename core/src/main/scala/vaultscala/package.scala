@@ -28,9 +28,9 @@ package object vaultscala {
   }
 
   object Vault {
-    def apply[T, F](vault: VaultLocation, data: T)(implicit op: Operation[T, F], api: Api, re: ResponseExtractor, ec: ExecutionContext): Future[Try[F]] = op.op(vault, data, api, re)
-    def sync[T, F](vault: VaultLocation, data: T)(implicit op: Operation[T, F], api: Api, re: ResponseExtractor, ec: ExecutionContext): Try[F] = {
-      Await.result(apply(vault, data), Duration.Inf)
+    def apply[T, F](data: T)(implicit op: Operation[T, F], api: Api, re: ResponseExtractor, ec: ExecutionContext, vault:VaultLocation): Future[Try[F]] = op.op(vault, data, api, re)
+    def sync[T, F](data: T)(implicit op: Operation[T, F], api: Api, re: ResponseExtractor, ec: ExecutionContext,vault:VaultLocation): Try[F] = {
+      Await.result(apply(data), Duration.Inf)
     }
   }
 

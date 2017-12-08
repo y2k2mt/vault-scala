@@ -13,10 +13,10 @@ Add to sbt dependency.
 
 ```scala
 libraryDependencies ++= Seq(
- "vaultscala" %% "vaultscala-core" % "0.1.0-SNAPSHOT",
+ "vaultscala" %% "vaultscala-core" % "0.2.0-SNAPSHOT",
  // You can switch alternative libraries.
- "vaultscala" %% "vaultscala-akka" % "0.1.0-SNAPSHOT",
- "vaultscala" %% "vaultscala-json4s" % "0.1.0-SNAPSHOT"
+ "vaultscala" %% "vaultscala-akka" % "0.2.0-SNAPSHOT",
+ "vaultscala" %% "vaultscala-json4s" % "0.2.0-SNAPSHOT"
 )
 ```
 
@@ -25,11 +25,11 @@ import vaultscala._
 import vaultscala.akkahttp._
 import vaultscala.json4s._
 
-val vault = VaultLocation(java.net.URI.create("http://localhost:8200"))
+implicit val vault = VaultLocation(java.net.URI.create("http://localhost:8200"))
 
 // Future[Try[SingleSecretValue("bar")]]
-Vault(vault,SingleSecret(ClientToken("token"),"foo"))
+Vault(SingleSecret(ClientToken("token"),"foo"))
 
 // Try[SingleSecretValue("bar")]
-Vault.sync(vault,SingleSecret(ClientToken("token"),"foo"))
+Vault.sync(SingleSecret(ClientToken("token"),"foo"))
 ```
